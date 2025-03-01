@@ -30,3 +30,13 @@ jobs:
           './target/*war' => /var/lib/tomcat9/webapps
        last_ssh: |
           sudo systemctl restart tomcat9
+    - name: Connect to Lab server and trigger Jenkins job
+      uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+      with:
+       host: '3.109.5.96'
+       user: 'labuser'
+       pass: 'Nuvelabs123$'
+       port: 22
+       connect_timeout: 10s
+       first_ssh: |
+          curl -l -u admin:Root123$ http://localhost:8080/job/Insured_Assurance_Project/build?token=ia_token
